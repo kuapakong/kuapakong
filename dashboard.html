@@ -524,7 +524,88 @@
         setInterval(() => {
             pindahSlide(1);
         }, 5000);
-    </script>
+ 
+
+<script>
+    // URL WEB APP DARI LANGKAH 3
+    const WEB_APP_URL = "10GC_WKuV0rOgaTyMs-lpS3ub6VbZ1hN6";
+
+    // Fungsi Toggle Menu Garis Tiga
+    function toggleMenu() {
+        document.getElementById("sidebarMenu").classList.toggle("active");
+        document.getElementById("menuOverlay").classList.toggle("active");
+    }
+
+    // Fungsi Login Admin
+    function openLoginModal() { document.getElementById("loginModal").style.display = "block"; toggleMenu(); }
+    function closeLoginModal() { document.getElementById("loginModal").style.display = "none"; document.getElementById("loginError").style.display = "none"; }
+    
+    function prosesLogin() {
+        const user = document.getElementById("username").value;
+        const pass = document.getElementById("password").value;
+        if (user === "kuapakong123" && pass === "Ku4p4k0ng45") {
+            closeLoginModal();
+            document.getElementById("publikView").style.display = "none";
+            document.getElementById("adminDashboard").style.display = "block";
+        } else {
+            document.getElementById("loginError").style.display = "block";
+        }
+    }
+
+    function logout() {
+        document.getElementById("publikView").style.display = "block";
+        document.getElementById("adminDashboard").style.display = "none";
+        alert("Anda telah keluar dari Panel Admin.");
+    }
+
+    // Fungsi Slider Poster
+    let currentSlide = 0;
+    const slides = document.querySelectorAll("#publikView .slide");
+    function tampilkanSlide(index) {
+        if (index >= slides.length) currentSlide = 0;
+        else if (index < 0) currentSlide = slides.length - 1;
+        else currentSlide = index;
+        slides.forEach(slide => slide.classList.remove("active"));
+        if(slides.length > 0) slides[currentSlide].classList.add("active");
+    }
+    function pindahSlide(arah) { tampilkanSlide(currentSlide + arah); }
+
+    // FUNGSI BARU: Mengunggah File ke Google Drive
+    function uploadKeDrive(inputElement) {
+        const file = inputElement.files[0];
+        if (!file) return;
+
+        alert("Sedang mengunggah " + file.name + " ke Google Drive... Mohon tunggu.");
+
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            // Mengambil data murni file (base64)
+            const base64Data = e.target.result.split(',')[1]; 
+            
+            const payload = {
+                name: file.name,
+                type: file.type,
+                base64: base64Data
+            };
+
+            // Mengirim data ke Google Apps Script
+            fetch(WEB_APP_URL, {
+                method: "POST",
+                body: JSON.stringify(payload)
+            })
+            .then(response => response.text())
+            .then(result => {
+                alert("SUKSES! File " + file.name + " berhasil tersimpan di Google Drive KUA Pakong.");
+                inputElement.value = ""; // Reset input
+            })
+            .catch(error => {
+                // Catatan: Mode no-cors sering memunculkan error catch meski file berhasil terkirim.
+                alert("File telah diproses. Silakan cek folder Google Drive Anda.");
+                inputElement.value = "";
+            });
+        };
+        reader.readAsDataURL(file);
+    }
 
 </body>
 </html>
