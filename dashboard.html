@@ -222,36 +222,38 @@
         // GANTI ALAMAT BLOGGER INI DENGAN ALAMAT BLOGGER BARU ANDA
         const BLOGGER_URL = "https://kuapakongdigital.blogspot.com";
 
-        /* =========================================
-           2. SCRIPT MENARIK BERITA DARI BLOGGER
+      /* =========================================
+           2. SCRIPT MENARIK BERITA DARI BLOGGER (DIPERBARUI)
            ========================================= */
         function loadBloggerNews() {
-            const feedURL = BLOGGER_URL + "/feeds/posts/default?alt=json&max-results=3";
+            // Menggunakan layanan jembatan (rss2json) agar tidak diblokir oleh browser
+            const bloggerRssUrl = "https://kuapakongdigital.blogspot.com/feeds/posts/default?alt=rss";
+            const apiURL = "https://api.rss2json.com/v1/api.json?rss_url=" + encodeURIComponent(bloggerRssUrl);
 
-            fetch(feedURL)
+            fetch(apiURL)
             .then(response => response.json())
             .then(data => {
-                const entries = data.feed.entry || [];
+                const items = data.items || [];
                 let htmlOutput = "";
 
-                if(entries.length === 0) {
-                    document.getElementById("berita-container").innerHTML = "<p>Belum ada berita yang dipublikasikan.</p>";
+                if(items.length === 0) {
+                    document.getElementById("berita-container").innerHTML = "<p>Belum ada berita yang dipublikasikan di Blogger.</p>";
                     return;
                 }
 
-                entries.forEach(entry => {
-                    const title = entry.title.$t;
-                    const link = entry.link.find(l => l.rel === "alternate").href;
+                items.slice(0, 3).forEach(item => {
+                    const title = item.title;
+                    const link = item.link;
                     
-                    // Ambil isi teks dan gambar
-                    let content = entry.content ? entry.content.$t : (entry.summary ? entry.summary.$t : "");
+                    // Ambil deskripsi / isi berita
+                    let description = item.content || item.description || "";
                     
-                    // Cari gambar pertama dalam postingan
-                    let imgMatch = content.match(/<img[^>]+src="([^">]+)"/);
+                    // Cari gambar pertama dalam isi berita
+                    let imgMatch = description.match(/<img[^>]+src="([^">]+)"/);
                     let imgSrc = imgMatch ? imgMatch[1] : "https://via.placeholder.com/400x250/1e293b/cbd5e1?text=KUA+PAKONG";
                     
-                    // Buat cuplikan 120 huruf tanpa kode HTML
-                    let snippet = content.replace(/(<([^>]+)>)/gi, "").substring(0, 120) + "...";
+                    // Bersihkan tag HTML untuk cuplikan teks
+                    let snippet = description.replace(/(<([^>]+)>)/gi, "").substring(0, 120) + "...";
 
                     htmlOutput += `
                     <div class="news-card">
@@ -267,11 +269,11 @@
                 document.getElementById("berita-container").innerHTML = htmlOutput;
             })
             .catch(error => {
-                document.getElementById("berita-container").innerHTML = "<p style='color: #ef4444;'>Gagal memuat berita. Pastikan alamat Blogger sudah benar dan Blog tidak dikunci (Private).</p>";
+                document.getElementById("berita-container").innerHTML = "<p style='color: #ef4444;'>Gagal menyinkronkan berita. Pastikan blog Anda sudah memuat minimal 1 artikel publik.</p>";
             });
         }
         
-        // Jalankan fungsi tarik berita saat web dibuka
+        // Jalankan fungsi saat web dibuka
         loadBloggerNews();
 
 
