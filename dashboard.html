@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halaman Utama - KUA Pakong</title>
+    <!-- Import Google Fonts: Plus Jakarta Sans & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: #f1f5f9;
+            min-height: 100vh;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            /* Latar belakang gedung + Gradasi Gelap + Garis Abstrak Hijau */
+            background: 
+                /* Garis abstrak diagonal hijau muda (tipis) */
+                repeating-linear-gradient(45deg, rgba(16, 185, 129, 0.04) 0px, rgba(16, 185, 129, 0.04) 2px, transparent 2px, transparent 15px),
+                /* Garis abstrak diagonal hijau tua (agak tebal) */
+                repeating-linear-gradient(-45deg, rgba(5, 150, 105, 0.05) 0px, rgba(5, 150, 105, 0.05) 3px, transparent 3px, transparent 25px),
+                /* Overlay gradasi hijau emerald gelap */
+                linear-gradient(to bottom, rgba(2, 44, 34, 0.88), rgba(6, 78, 59, 0.95)),
+                /* Foto Gedung */
+                url('bg-gedung.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        /* --- HEADER NAVBAR --- */
+        header {
+            background: rgba(6, 78, 59, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            padding: 15px 30px;
+            display: flex;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Tombol Hamburger (Garis Tiga) */
+        .menu-toggle {
+            background: none;
+            border: none;
+            color: #ffffff;
+            font-size: 28px;
+            cursor: pointer;
+            margin-right: 25px;
+            transition: transform 0.3s ease, color 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .menu-toggle:hover {
+            color: #f59e0b; /* Warna emas saat di-hover */
+            transform: scale(1.1);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .logo-img {
+            height: 45px;
+            width: auto;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+        }
+
+        .instansi-title h1 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 18px;
+            font-weight: 800;
+            letter-spacing: 0.8px;
+            line-height: 1.2;
+        }
+
+        .instansi-title p {
+            font-size: 11px;
+            opacity: 0.85;
+            font-weight: 400;
+            letter-spacing: 0.3px;
+        }
+
+        /* --- SIDEBAR MENU (OFF-CANVAS) --- */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -320px; /* Sembunyi di luar layar */
+            width: 320px;
+            height: 100vh;
+            background: linear-gradient(180deg, #022c22 0%, #064e3b 100%);
+            box-shadow: 5px 0 25px rgba(0, 0, 0, 0.5);
+            z-index: 1050;
+            transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .sidebar.active {
+            left: 0; /* Tampil ke dalam layar */
+        }
+
+        .sidebar-header {
+            padding: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .sidebar-header h2 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 18px;
+            color: #f59e0b;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            color: #94a3b8;
+            font-size: 32px;
+            cursor: pointer;
+            line-height: 1;
+            transition: color 0.3s;
+        }
+
+        .close-btn:hover {
+            color: #ffffff;
+        }
+
+        .nav-links {
+            list-style: none;
+            padding: 20px 0;
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        .nav-links li {
+            padding: 0 15px;
+            margin-bottom: 8px;
+        }
+
+        .nav-links a {
+            display: flex;
+            align-items: center;
+            padding: 14px 20px;
+            color: #e2e8f0;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            transform: translateX(5px);
+            border-left: 4px solid #f59e0b;
+        }
+
+        /* Ikon Menu SVG */
+        .nav-links a svg {
+            width: 20px;
+            height: 20px;
+            margin-right: 14px;
+            fill: #94a3b8;
+            transition: fill 0.3s ease;
+        }
+
+        .nav-links a:hover svg {
+            fill: #f59e0b;
+        }
+
+        /* Overlay Hitam saat menu terbuka */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(3px);
+            z-index: 1040;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* --- KONTEN UTAMA (DASHBOARD) --- */
+        main {
+            padding: 120px 30px 50px 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        .welcome-panel {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            margin-bottom: 40px;
+        }
+
+        .welcome-panel h2 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 28px;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 10px;
+            letter-spacing: 0.5px;
+        }
+
+        .welcome-panel p {
+            font-size: 15px;
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+
+        /* Grid Widget Standar Dashboard */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .widget-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 12px;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .widget-card:hover {
+            transform: translateY(-5px);
+            border-color: #059669;
+        }
+
+        .widget-card h3 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 16px;
+            color: #f59e0b;
+            margin-bottom: 12px;
+        }
+
+        .widget-card p {
+            font-size: 13px;
+            color: #94a3b8;
+            line-height: 1.5;
+        }
+
+        /* Responsif HP */
+        @media (max-width: 768px) {
+            header {
+                padding: 12px 20px;
+            }
+            .instansi-title h1 {
+                font-size: 16px;
+            }
+            main {
+                padding: 100px 20px 40px 20px;
+            }
+            .sidebar {
+                width: 280px;
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Instansi -->
+    <header>
+        <!-- Tombol Garis Tiga (Hamburger) -->
+        <button class="menu-toggle" onclick="toggleMenu()" title="Buka Menu">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+            </svg>
+        </button>
+        
+        <div class="logo-container">
+            <img class="logo-img" src="logo-kemenag.png" alt="Logo Kemenag">
+            <div class="instansi-title">
+                <h1>KUA KECAMATAN PAKONG</h1>
+                <p>Kementerian Agama RI</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Overlay Latar Gelap Saat Menu Terbuka -->
+    <div class="overlay" id="menuOverlay" onclick="toggleMenu()"></div>
+
+    <!-- Sidebar Menu (Navigasi Kiri) -->
+    <nav class="sidebar" id="sidebarMenu">
+        <div class="sidebar-header">
+            <h2>Menu Layanan</h2>
+            <button class="close-btn" onclick="toggleMenu()">&times;</button>
+        </div>
+        <ul class="nav-links">
+            <li>
+                <a href="#">
+                    <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                    Profil Instansi
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+                    Data Kepegawaian & Personalia
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+                    Publikasi & Informasi Publik
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <svg viewBox="0 0 24 24"><path d="M13 1.07V9h7c0-4.08-3.05-7.44-7-7.93zM4 15c0 4.42 3.58 8 8 8s8-3.58 8-8v-4H4v4zm7-13.93C7.06 1.55 4 4.92 4 9h7V1.07z"/></svg>
+                    Produk Hukum & Regulasi
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <svg viewBox="0 0 24 24"><path d="M21 2H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h7v2H8v2h8v-2h-2v-2h7c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H3V4h18v12z"/></svg>
+                    Sistem Pelayanan Elektronik
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                    Pusat Informasi & Pengaduan
+                </a>
+            </li>
+            <!-- Tombol Kembali ke Halaman Depan -->
+            <li style="margin-top: 30px;">
+                <a href="index.html" style="background: rgba(245, 158, 11, 0.1); color: #f59e0b; border-left: none; border-bottom: 2px solid #f59e0b;">
+                    <svg viewBox="0 0 24 24" style="fill: #f59e0b;"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+                    Kembali ke Beranda Awal
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Konten Dashboard -->
+    <main>
+        <!-- Panel Selamat Datang -->
+        <div class="welcome-panel">
+            <h2>Beranda Dashboard Integrasi</h2>
+            <p>
+                Anda berada di pusat layanan mandiri dan sistem informasi KUA Kecamatan Pakong. 
+                Silakan gunakan menu navigasi (garis tiga) di pojok kiri atas untuk mengakses direktori dokumen, 
+                personalia, publikasi peraturan, maupun layanan operasional keagamaan lainnya.
+            </p>
+        </div>
+
+        <!-- Grid Status / Akses Cepat (Opsional untuk mempercantik layar utama) -->
+        <div class="dashboard-grid">
+            <div class="widget-card">
+                <h3>Informasi Pendaftaran Nikah</h3>
+                <p>Akses cepat menuju Sistem Informasi Manajemen Nikah (SIMKAH) terintegrasi secara elektronik.</p>
+            </div>
+            <div class="widget-card">
+                <h3>Jadwal Bimbingan (Bimwin)</h3>
+                <p>Pengecekan tanggal pendaftaran dan jadwal bimbingan pra-nikah bagi calon pengantin.</p>
+            </div>
+            <div class="widget-card">
+                <h3>Data Zakat & Wakaf</h3>
+                <p>Direktori legalisasi harta benda wakaf dan konsultasi pencatatan perwakafan di wilayah Pakong.</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Script Javascript untuk mengontrol Sidebar -->
+    <script>
+        function toggleMenu() {
+            const sidebar = document.getElementById("sidebarMenu");
+            const overlay = document.getElementById("menuOverlay");
+            
+            // Menambahkan/menghapus kelas 'active' untuk membuka/menutup menu
+            sidebar.classList.toggle("active");
+            overlay.classList.toggle("active");
+        }
+    </script>
+
+</body>
+</html>
