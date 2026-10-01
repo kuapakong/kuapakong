@@ -75,13 +75,13 @@
             letter-spacing: 0.3px;
         }
 
-        /* Hero Section - Foto Orang Berdiri Utuh Tanpa Background & Frame */
+        /* Hero Section */
         .hero {
             flex: 1;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 60px 20px 0 20px; /* Padding bawah 0 agar foto menyatu sejajar batas bawah */
+            padding: 60px 20px 0 20px;
             background: linear-gradient(rgba(6, 78, 59, 0.92), rgba(6, 78, 59, 0.92)), 
                         url('https://via.placeholder.com/1200x600?text=Gedung+KUA+Pakong') no-repeat center center/cover;
             color: white;
@@ -98,7 +98,7 @@
             border-bottom: none;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
             display: flex;
-            align-items: flex-end; /* Memastikan foto berdiri sejajar di dasar frame */
+            align-items: flex-end;
             gap: 40px;
             animation: zoomIn 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
@@ -134,7 +134,6 @@
             animation: fadeInUp 0.8s ease-out 0.5s forwards;
         }
 
-        /* Tombol Utama */
         .btn-utama {
             display: inline-block;
             padding: 13px 32px;
@@ -158,7 +157,7 @@
             background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%);
         }
 
-        /* Tampilan Foto Berdiri Utuh Tanpa Background & Tanpa Lingkaran */
+        /* Profil Foto Berdiri Utuh */
         .kua-profile-standing {
             display: flex;
             flex-direction: column;
@@ -170,11 +169,12 @@
         }
 
         .photo-standing {
-            height: 310px; /* Ukuran foto lebih besar, berdiri utuh */
+            height: 310px;
             width: auto;
             object-fit: contain;
-            filter: drop-shadow(0 12px 18px rgba(0, 0, 0, 0.45)); /* Bayangan badan alami */
+            filter: drop-shadow(0 12px 18px rgba(0, 0, 0, 0.45));
             transition: transform 0.3s ease;
+            background: transparent !important; /* Memastikan latar belakang selalu transparan */
         }
 
         .photo-standing:hover {
@@ -182,11 +182,11 @@
         }
 
         .profile-caption {
-            background: rgba(0, 0, 0, 0.3);
+            background: rgba(0, 0, 0, 0.35);
             padding: 10px 18px;
             border-radius: 8px;
             margin-bottom: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(4px);
         }
 
@@ -207,7 +207,7 @@
             text-transform: uppercase;
         }
 
-        /* Fitur Layanan Utama Interaktif */
+        /* Fitur Layanan */
         .fitur-ringkas {
             background: #ffffff;
             padding: 60px 20px;
@@ -327,14 +327,8 @@
 
         /* Responsif Tampilan HP */
         @media (max-width: 768px) {
-            header {
-                padding: 15px 20px;
-            }
-
-            .hero {
-                padding-top: 30px;
-            }
-
+            header { padding: 15px 20px; }
+            .hero { padding-top: 30px; }
             .hero-container {
                 flex-direction: column-reverse;
                 padding: 28px 20px 0 20px;
@@ -342,19 +336,9 @@
                 gap: 20px;
                 align-items: center;
             }
-
-            .hero-text {
-                text-align: center;
-                padding-bottom: 30px;
-            }
-
-            .hero-text h2 {
-                font-size: 24px;
-            }
-
-            .photo-standing {
-                height: 230px;
-            }
+            .hero-text { text-align: center; padding-bottom: 30px; }
+            .hero-text h2 { font-size: 24px; }
+            .photo-standing { height: 230px; }
         }
 
         /* Footer */
@@ -410,10 +394,9 @@
                 <a href="dashboard.html" class="btn-utama">MASUK KE HALAMAN UTAMA</a>
             </div>
 
-            <!-- Kolom Kanan: Foto Transparan Berdiri Utuh Tanpa Background & Frame -->
+            <!-- Kolom Kanan: Memanggil foto transparan langsung dari repository GitHub -->
             <div class="kua-profile-standing">
-                <!-- Direct link gambar transparan baru dari Google Drive -->
-                <img class="photo-standing" src="https://lh3.googleusercontent.com/d/1-PYilHf33tmt-7vPuugoL8A_eXTOB0Cv" alt="Kepala KUA Pakong - H. Mudenar, S.Th.I., M.Pd.I.">
+                <img class="photo-standing" src="kepala-kua.png" alt="Kepala KUA Pakong - H. Mudenar, S.Th.I., M.Pd.I.">
                 <div class="profile-caption">
                     <h3>H. MUDENAR, S.Th.I., M.Pd.I.</h3>
                     <span>Kepala KUA Pakong</span>
@@ -428,7 +411,6 @@
         <p class="sub-title">Komitmen pelayan publik terpadu untuk masyarakat Kecamatan Pakong</p>
         
         <div class="fitur-grid">
-            <!-- Kartu 1: Nikah -->
             <div class="fitur-card">
                 <div class="icon-box">
                     <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
@@ -438,7 +420,6 @@
                 <span class="card-link">Lihat Detail <span>&rarr;</span></span>
             </div>
 
-            <!-- Kartu 2: Bimbingan Perkawinan -->
             <div class="fitur-card">
                 <div class="icon-box">
                     <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
@@ -448,7 +429,6 @@
                 <span class="card-link">Lihat Detail <span>&rarr;</span></span>
             </div>
 
-            <!-- Kartu 3: Layanan Wakaf -->
             <div class="fitur-card">
                 <div class="icon-box">
                     <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
@@ -458,7 +438,6 @@
                 <span class="card-link">Lihat Detail <span>&rarr;</span></span>
             </div>
 
-            <!-- Kartu 4: Konsultasi Keagamaan -->
             <div class="fitur-card">
                 <div class="icon-box">
                     <svg viewBox="0 0 24 24"><path d="M21 6h-2v9H6v2c0 .55.45 1 1 1h11l4 4V7c0-.55-.45-1-1-1zm-4-3H3c-.55 0-1 .45-1 1v14l4-4h11c.55 0 1-.45 1-1V4c0-.55-.45-1-1-1z"/></svg>
