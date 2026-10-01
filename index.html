@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Situs Resmi KUA Pakong</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f4f6f9;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Header / Navigation */
+        header {
+            background-color: #0d5c3a; /* Warna hijau khas instansi keagamaan/Kemenag */
+            color: #ffffff;
+            padding: 15px 50px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-placeholder {
+            width: 50px;
+            height: 50px;
+            background-color: #ffffff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #0d5c3a;
+            font-size: 12px;
+            text-align: center;
+        }
+
+        .instansi-title h1 {
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .instansi-title p {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+
+        /* Hero / Welcome Section */
+        .hero {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 20px;
+            background: linear-gradient(rgba(13, 92, 58, 0.85), rgba(13, 92, 58, 0.85)), 
+                        url('https://via.placeholder.com/1200x600?text=Gedung+KUA+Pakong') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            padding: 40px 30px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .hero-content h2 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hero-content p {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+
+        /* Button Main Page */
+        .btn-utama {
+            display: inline-block;
+            padding: 12px 35px;
+            background-color: #e6a100; /* Warna aksen emas/kuning */
+            color: #1a1a1a;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+        }
+
+        .btn-utama:hover {
+            background-color: #d49300;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0,0,0,0.2);
+        }
+
+        /* Fitur Layanan Singkat */
+        .fitur-ringkas {
+            background: #ffffff;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .fitur-grid {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            max-width: 1000px;
+            margin: 20px auto 0 auto;
+            flex-wrap: wrap;
+        }
+
+        .fitur-card {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-top: 4px solid #0d5c3a;
+            padding: 20px;
+            width: 220px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #1c2529;
+            color: #dcdcdc;
+            text-align: center;
+            padding: 15px;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Instansi -->
+    <header>
+        <div class="logo-container">
+            <div class="logo-placeholder">LOGO</div>
+            <div class="instansi-title">
+                <h1>KANTOR URUSAN AGAMA PAKONG</h1>
+                <p>Kementerian Agama Republik Indonesia</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Halaman Depan / Landing Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h2>Selamat Datang</h2>
+            <p>
+                Selamat datang di Layanan Informasi Resmi Kantor Urusan Agama (KUA) Kecamatan Pakong. 
+                Kami berkomitmen untuk memberikan pelayanan publik yang transparan, akuntabel, dan profesional 
+                dalam melayani masyarakat di bidang keagamaan dan pencatatan pernikahan.
+            </p>
+            <!-- Tombol untuk Masuk ke Halaman Utama -->
+            <a href="dashboard.html" class="btn-utama">MASUK KE HALAMAN UTAMA</a>
+        </div>
+    </section>
+
+    <!-- Fitur Layanan Utama -->
+    <section class="fitur-ringkas">
+        <h3 style="color: #0d5c3a;">Layanan Utama Kami</h3>
+        <div class="fitur-grid">
+            <div class="fitur-card">
+                <strong>Pendaftaran Nikah</strong>
+                <p style="margin-top: 8px; font-size: 12px; color: #666;">Pelayanan administrasi dan pencatatan pernikahan.</p>
+            </div>
+            <div class="fitur-card">
+                <strong>Bimbingan Perkawinan</strong>
+                <p style="margin-top: 8px; font-size: 12px; color: #666;">Pembekalan dan konseling bagi calon pengantin.</p>
+            </div>
+            <div class="fitur-card">
+                <strong>Layanan Wakaf</strong>
+                <p style="margin-top: 8px; font-size: 12px; color: #666;">Konsultasi dan legalisasi sertifikasi tanah wakaf.</p>
+            </div>
+            <div class="fitur-card">
+                <strong>Konsultasi Keagamaan</strong>
+                <p style="margin-top: 8px; font-size: 12px; color: #666;">Pelayanan bimbingan dan konsultasi syariah.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 KUA Kecamatan Pakong. Seluruh Hak Cipta Dilindungi Undang-Undang.</p>
+    </footer>
+
+</body>
+</html>
