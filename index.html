@@ -75,7 +75,7 @@
             letter-spacing: 0.3px;
         }
 
-        /* Hero / Welcome Section dengan Layout 2 Kolom */
+        /* Hero / Welcome Section Menyatu Dalam Satu Frame */
         .hero {
             flex: 1;
             display: flex;
@@ -92,13 +92,13 @@
             width: 100%;
             background: rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(12px);
-            padding: 40px;
+            padding: 48px;
             border-radius: 16px;
             border: 1px solid rgba(255, 255, 255, 0.18);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
             display: flex;
             align-items: center;
-            gap: 40px;
+            gap: 48px;
             animation: zoomIn 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
@@ -156,54 +156,48 @@
             background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%);
         }
 
-        /* Profil Kepala KUA */
-        .kua-profile {
+        /* Foto Utuh Menyatu Tanpa Background Khusus */
+        .kua-profile-direct {
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
-            min-width: 260px;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.12);
+            min-width: 240px;
             opacity: 0;
             animation: fadeInUp 0.8s ease-out 0.6s forwards;
         }
 
-        .photo-wrapper {
-            position: relative;
-            width: 140px;
-            height: 140px;
+        .photo-circle {
+            width: 170px;
+            height: 170px;
             border-radius: 50%;
-            padding: 4px;
-            background: linear-gradient(135deg, #f59e0b 0%, #059669 100%);
-            margin-bottom: 14px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.25);
-        }
-
-        .photo-wrapper img {
-            width: 100%;
-            height: 100%;
+            border: 3px solid #f59e0b;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
             object-fit: cover;
-            border-radius: 50%;
             background-color: #ffffff;
+            margin-bottom: 14px;
+            transition: transform 0.3s ease;
         }
 
-        .kua-profile h3 {
+        .photo-circle:hover {
+            transform: scale(1.03);
+        }
+
+        .kua-profile-direct h3 {
             font-family: 'Plus Jakarta Sans', sans-serif;
             font-size: 15px;
             font-weight: 800;
             color: #ffffff;
             margin-bottom: 4px;
             letter-spacing: 0.3px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
 
-        .kua-profile span {
+        .kua-profile-direct span {
             font-size: 12px;
             color: #fbbf24;
-            font-weight: 600;
-            letter-spacing: 0.5px;
+            font-weight: 700;
+            letter-spacing: 0.8px;
             text-transform: uppercase;
         }
 
@@ -345,6 +339,11 @@
             .hero-text h2 {
                 font-size: 24px;
             }
+
+            .photo-circle {
+                width: 140px;
+                height: 140px;
+            }
         }
 
         /* Footer */
@@ -386,7 +385,7 @@
         </div>
     </header>
 
-    <!-- Halaman Depan / Landing Section -->
+    <!-- Halaman Depan / Landing Section Menyatu Dalam Satu Frame -->
     <section class="hero">
         <div class="hero-container">
             <!-- Kolom Kiri: Ucapan & Deskripsi -->
@@ -400,12 +399,9 @@
                 <a href="dashboard.html" class="btn-utama">MASUK KE HALAMAN UTAMA</a>
             </div>
 
-            <!-- Kolom Kanan: Foto & Nama Kepala KUA -->
-            <div class="kua-profile">
-                <div class="photo-wrapper">
-                    <!-- Menggunakan Direct Link Image dari Google Drive -->
-                    <img src="https://lh3.googleusercontent.com/d/1w6cF7ruHvT4prw26Uzkgp9_wKFgrYo34" alt="Kepala KUA Pakong - H. Mudenar, S.Th.I., M.Pd.I.">
-                </div>
+            <!-- Kolom Kanan: Foto Utuh Langsung Menyatu Tanpa Background Khusus -->
+            <div class="kua-profile-direct">
+                <img class="photo-circle" src="https://lh3.googleusercontent.com/d/1w6cF7ruHvT4prw26Uzkgp9_wKFgrYo34" alt="Kepala KUA Pakong - H. Mudenar, S.Th.I., M.Pd.I.">
                 <h3>H. MUDENAR, S.Th.I., M.Pd.I.</h3>
                 <span>Kepala KUA Pakong</span>
             </div>
