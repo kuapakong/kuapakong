@@ -61,40 +61,16 @@
 
         /* Lightbox Modal (Tampilan Poster Ukuran Penuh / Layar Penuh) */
         #lightboxModal {
-            display: none;
-            position: fixed;
-            z-index: 3000;
-            padding-top: 50px;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.92);
-            backdrop-filter: blur(8px);
-            text-align: center;
+            display: none; position: fixed; z-index: 3000; padding-top: 50px; left: 0; top: 0; width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.92); backdrop-filter: blur(8px); text-align: center;
         }
         #lightboxImg {
-            margin: auto;
-            display: block;
-            max-width: 90%;
-            max-height: 85vh;
-            border-radius: 8px;
-            box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
-            object-fit: contain;
-            animation: zoomIn 0.3s ease;
+            margin: auto; display: block; max-width: 90%; max-height: 85vh; border-radius: 8px;
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.2); object-fit: contain; animation: zoomIn 0.3s ease;
         }
-        .close-lightbox {
-            position: absolute;
-            top: 20px;
-            right: 35px;
-            color: #f1f5f9;
-            font-size: 45px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: color 0.3s;
-        }
+        .close-lightbox { position: absolute; top: 20px; right: 35px; color: #f1f5f9; font-size: 45px; font-weight: bold; cursor: pointer; transition: color 0.3s; }
         .close-lightbox:hover { color: #f59e0b; }
-        
+
         /* Main & Layout */
         main { padding: 150px 30px 60px 30px; max-width: 1100px; margin: 0 auto; }
         #adminDashboard { display: none; }
@@ -111,15 +87,17 @@
         .prev-btn { left: 10px; } .next-btn { right: 10px; }
         .hint-text { font-size: 12px; color: #94a3b8; margin-top: 8px; font-style: italic; }
 
-        /* Kolom Berita & Galeri */
+        /* Kolom Berita Dinamis (Dari Blogger) */
         .section-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 24px; font-weight: 800; color: #f59e0b; margin-bottom: 24px; border-bottom: 2px solid rgba(255,255,255,0.1); padding-bottom: 12px; }
         .news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
-        .news-card { background: rgba(15, 23, 42, 0.65); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; }
-        .news-img { width: 100%; height: 200px; object-fit: cover; }
+        .news-card { background: rgba(15, 23, 42, 0.65); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; transition: transform 0.3s ease; }
+        .news-card:hover { transform: translateY(-6px); border-color: #059669; box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
+        .news-img { width: 100%; height: 200px; object-fit: cover; border-bottom: 1px solid rgba(255,255,255,0.05); }
         .news-content { padding: 24px; flex: 1; display: flex; flex-direction: column; }
-        .news-content h3 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 17px; color: #ffffff; margin-bottom: 12px; }
+        .news-content h3 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 17px; color: #ffffff; margin-bottom: 12px; line-height: 1.4; }
         .news-content p { font-size: 13.5px; color: #cbd5e1; line-height: 1.6; margin-bottom: 20px; flex: 1; }
-        .read-more { font-size: 13px; font-weight: 600; color: #34d399; text-decoration: none; align-self: flex-start; }
+        .read-more { display: inline-block; font-size: 13px; font-weight: 600; color: #34d399; text-decoration: none; align-self: flex-start; }
+        .read-more:hover { color: #f59e0b; }
 
         /* Admin Dashboard UI */
         .admin-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; border-bottom: 2px solid #059669; padding-bottom: 10px; }
@@ -204,14 +182,14 @@
     <!-- TAMPILAN UTAMA (PUBLIK) -->
     <main id="publikView">
         
-        <!-- 1. SLIDER POSTER (SEMUA POSTER & BISA DIKLIK FULL LAYAR) -->
+        <!-- 1. SLIDER POSTER (BISA DIKLIK FULL LAYAR) -->
         <section class="poster-section">
             <div class="carousel-container">
                 <!-- Poster 1 -->
                 <div class="slide active">
                     <img src="poster2.png" alt="Poster Kegiatan 1" onclick="openLightbox(this.src)">
                 </div>
-                <!-- Poster 2 (Anda bisa menambah poster lainnya di sini dengan menduplikasi div slide) -->
+                <!-- Poster 2 -->
                 <div class="slide">
                     <img src="https://via.placeholder.com/1200x500/0f172a/ffffff?text=POSTER+KEGIATAN+KUA+PAKONG+2" alt="Poster Kegiatan 2" onclick="openLightbox(this.src)">
                 </div>
@@ -223,21 +201,14 @@
             <p class="hint-text">🔍 Klik pada poster untuk melihat ukuran penuh (full layar)</p>
         </section>
 
-        <!-- 2. KOLOM BERITA -->
+        <!-- 2. KOLOM BERITA OTOMATIS (DARI BLOGGER) -->
         <section class="berita-section" style="margin-bottom: 50px;">
             <h2 class="section-title">Publikasi & Berita Terkini</h2>
-            <div class="news-grid">
-                <div class="news-card">
-                    <img class="news-img" src="bg-gedung.jpg" alt="Berita 1">
-                    <div class="news-content">
-                        <h3>Sosialisasi Layanan Nikah dan Bimbingan Perkawinan 2026</h3>
-                        <p>Kantor Urusan Agama (KUA) Kecamatan Pakong terus meningkatkan kualitas pelayanan prima kepada masyarakat...</p>
-                        <a href="#" class="read-more">Baca Selengkapnya &rarr;</a>
-                    </div>
-                </div>
+            <div class="news-grid" id="berita-container">
+                <p style="color: #cbd5e1; text-align: center; width: 100%;">Sedang menyinkronkan berita terbaru...</p>
             </div>
         </section>
-
+        
         <!-- 3. GALERI GOOGLE DRIVE -->
         <section style="text-align: center;">
             <h2 style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 20px; color: #f59e0b; margin-bottom: 20px;">Galeri & Dokumen Publik KUA</h2>
@@ -255,7 +226,7 @@
         </div>
         <div class="admin-grid">
             <div class="admin-card">
-                <h4>Upload Poster / Regulasi</h4>
+                <h4>Upload Dokumen / Regulasi</h4>
                 <label class="upload-btn">
                     + Upload File
                     <input type="file" accept="image/*, .pdf" onchange="uploadKeDrive(this)">
@@ -266,6 +237,55 @@
 
     <script>
         const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzd_L39iO-o850kKnS11WXXbHpSuE4o9Dq-igMSTBTwhBWAJ0JQZbgk5YwXRjo9AP_Sdg/exec";
+        
+        // ALAMAT BLOGGER ANDA (Pastikan diganti dengan link blogspot Anda yang aktif)
+        const BLOGGER_URL = "https://kuapakongdigital.blogspot.com";
+
+        // Tarik Berita Otomatis dari Blogger via RSS2JSON Proxy
+        function loadBloggerNews() {
+            const bloggerRssUrl = BLOGGER_URL + "/feeds/posts/default?alt=rss";
+            const apiURL = "https://api.rss2json.com/v1/api.json?rss_url=" + encodeURIComponent(bloggerRssUrl);
+
+            fetch(apiURL)
+            .then(response => response.json())
+            .then(data => {
+                const items = data.items || [];
+                let htmlOutput = "";
+
+                if(items.length === 0) {
+                    document.getElementById("berita-container").innerHTML = "<p>Belum ada berita yang dipublikasikan di Blogger.</p>";
+                    return;
+                }
+
+                items.slice(0, 3).forEach(item => {
+                    const title = item.title;
+                    const link = item.link;
+                    let description = item.content || item.description || "";
+                    
+                    let imgMatch = description.match(/<img[^>]+src="([^">]+)"/);
+                    let imgSrc = imgMatch ? imgMatch[1] : "https://via.placeholder.com/400x250/1e293b/cbd5e1?text=KUA+PAKONG";
+                    
+                    let snippet = description.replace(/(<([^>]+)>)/gi, "").substring(0, 120) + "...";
+
+                    htmlOutput += `
+                    <div class="news-card">
+                        <img class="news-img" src="${imgSrc}" alt="Foto Berita">
+                        <div class="news-content">
+                            <h3>${title}</h3>
+                            <p>${snippet}</p>
+                            <a href="${link}" target="_blank" class="read-more">Baca Selengkapnya &rarr;</a>
+                        </div>
+                    </div>
+                    `;
+                });
+                document.getElementById("berita-container").innerHTML = htmlOutput;
+            })
+            .catch(error => {
+                document.getElementById("berita-container").innerHTML = "<p style='color: #ef4444;'>Gagal menyinkronkan berita dari Blogger. Pastikan blog sudah menerbitkan minimal 1 artikel publik.</p>";
+            });
+        }
+        
+        loadBloggerNews();
 
         function toggleMenu() { document.getElementById("sidebarMenu").classList.toggle("active"); document.getElementById("menuOverlay").classList.toggle("active"); }
         function openLoginModal() { document.getElementById("loginModal").style.display = "block"; toggleMenu(); }
@@ -278,12 +298,10 @@
         }
         function logout() { document.getElementById("publikView").style.display = "block"; document.getElementById("adminDashboard").style.display = "none"; }
 
-        // Fungsi Lightbox Full Layar
+        // Lightbox Full Layar
         function openLightbox(imgSrc) {
-            const modal = document.getElementById("lightboxModal");
-            const modalImg = document.getElementById("lightboxImg");
-            modal.style.display = "block";
-            modalImg.src = imgSrc;
+            document.getElementById("lightboxModal").style.display = "block";
+            document.getElementById("lightboxImg").src = imgSrc;
         }
         function closeLightbox() {
             document.getElementById("lightboxModal").style.display = "none";
