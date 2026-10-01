@@ -75,28 +75,30 @@
             letter-spacing: 0.3px;
         }
 
-        /* Hero Section */
+        /* Hero Section dengan Foto Background Gedung Baru */
         .hero {
             flex: 1;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 60px 20px 0 20px;
-            background: linear-gradient(rgba(6, 78, 59, 0.92), rgba(6, 78, 59, 0.92)), 
-                        url('https://via.placeholder.com/1200x600?text=Gedung+KUA+Pakong') no-repeat center center/cover;
+            /* Menggunakan bg-gedung.jpg yang diupload ke GitHub dengan overlay gradasi hijau transparan */
+            background: linear-gradient(rgba(6, 78, 59, 0.82), rgba(6, 78, 59, 0.88)), 
+                        url('bg-gedung.jpg') no-repeat center center/cover;
             color: white;
         }
 
         .hero-container {
             max-width: 1080px;
             width: 100%;
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             padding: 40px 48px 0 48px;
             border-radius: 16px 16px 0 0;
-            border: 1px solid rgba(255, 255, 255, 0.18);
+            border: 1px solid rgba(255, 255, 255, 0.22);
             border-bottom: none;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
             display: flex;
             align-items: flex-end;
             gap: 40px;
@@ -132,6 +134,7 @@
             color: #f1f5f9;
             opacity: 0;
             animation: fadeInUp 0.8s ease-out 0.5s forwards;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
         }
 
         .btn-utama {
@@ -157,7 +160,7 @@
             background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%);
         }
 
-        /* Profil Foto Berdiri Utuh */
+        /* Foto Profil Berdiri Utuh Tanpa Latar Belakang */
         .kua-profile-standing {
             display: flex;
             flex-direction: column;
@@ -169,12 +172,12 @@
         }
 
         .photo-standing {
-            height: 310px;
+            height: 320px;
             width: auto;
             object-fit: contain;
-            filter: drop-shadow(0 12px 18px rgba(0, 0, 0, 0.45));
+            filter: drop-shadow(0 12px 20px rgba(0, 0, 0, 0.5));
             transition: transform 0.3s ease;
-            background: transparent !important; /* Memastikan latar belakang selalu transparan */
+            background: transparent !important;
         }
 
         .photo-standing:hover {
@@ -182,11 +185,11 @@
         }
 
         .profile-caption {
-            background: rgba(0, 0, 0, 0.35);
+            background: rgba(0, 0, 0, 0.45);
             padding: 10px 18px;
             border-radius: 8px;
             margin-bottom: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.18);
             backdrop-filter: blur(4px);
         }
 
@@ -207,7 +210,7 @@
             text-transform: uppercase;
         }
 
-        /* Fitur Layanan */
+        /* Fitur Layanan Utama */
         .fitur-ringkas {
             background: #ffffff;
             padding: 60px 20px;
@@ -338,7 +341,7 @@
             }
             .hero-text { text-align: center; padding-bottom: 30px; }
             .hero-text h2 { font-size: 24px; }
-            .photo-standing { height: 230px; }
+            .photo-standing { height: 240px; }
         }
 
         /* Footer */
@@ -380,7 +383,7 @@
         </div>
     </header>
 
-    <!-- Halaman Depan / Landing Section -->
+    <!-- Halaman Depan / Landing Section dengan Gambar Gedung KUA -->
     <section class="hero">
         <div class="hero-container">
             <!-- Kolom Kiri: Ucapan & Deskripsi -->
@@ -394,7 +397,7 @@
                 <a href="dashboard.html" class="btn-utama">MASUK KE HALAMAN UTAMA</a>
             </div>
 
-            <!-- Kolom Kanan: Memanggil foto transparan langsung dari repository GitHub -->
+            <!-- Kolom Kanan: Memanggil foto transparan dari GitHub -->
             <div class="kua-profile-standing">
                 <img class="photo-standing" src="kepala-kua.png" alt="Kepala KUA Pakong - H. Mudenar, S.Th.I., M.Pd.I.">
                 <div class="profile-caption">
