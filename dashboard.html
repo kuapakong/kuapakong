@@ -12,10 +12,7 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: 'Inter', sans-serif;
-            color: #f1f5f9;
-            min-height: 100vh;
-            overflow-x: hidden;
+            font-family: 'Inter', sans-serif; color: #f1f5f9; min-height: 100vh; overflow-x: hidden;
             background: 
                 repeating-linear-gradient(45deg, rgba(16, 185, 129, 0.04) 0px, rgba(16, 185, 129, 0.04) 2px, transparent 2px, transparent 15px),
                 repeating-linear-gradient(-45deg, rgba(5, 150, 105, 0.05) 0px, rgba(5, 150, 105, 0.05) 3px, transparent 3px, transparent 25px),
@@ -25,11 +22,7 @@
         }
 
         /* Header */
-        header {
-            background: rgba(6, 78, 59, 0.88); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            color: #ffffff; position: fixed; top: 0; width: 100%; z-index: 1000;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); display: flex; flex-direction: column;
-        }
+        header { background: rgba(6, 78, 59, 0.88); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); color: #ffffff; position: fixed; top: 0; width: 100%; z-index: 1000; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); display: flex; flex-direction: column; }
         .header-top { display: flex; align-items: center; justify-content: space-between; padding: 16px 30px; }
         .logo-container { display: flex; align-items: center; gap: 16px; }
         .logo-img { height: 48px; width: auto; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)); }
@@ -37,25 +30,14 @@
         .instansi-title p { font-size: 11px; opacity: 0.85; }
         .menu-toggle { background: none; border: none; color: #ffffff; font-size: 28px; cursor: pointer; transition: transform 0.3s; }
         .menu-toggle:hover { color: #f59e0b; transform: scale(1.1); }
-        
-        .header-bottom {
-            width: 100%; background: rgba(2, 44, 34, 0.5); border-top: 1px solid rgba(255, 255, 255, 0.08);
-            padding: 12px 30px; display: flex; overflow-x: auto; white-space: nowrap; gap: 30px;
-            scrollbar-width: thin; scrollbar-color: #059669 transparent;
-        }
+        .header-bottom { width: 100%; background: rgba(2, 44, 34, 0.5); border-top: 1px solid rgba(255, 255, 255, 0.08); padding: 12px 30px; display: flex; overflow-x: auto; white-space: nowrap; gap: 30px; scrollbar-width: thin; scrollbar-color: #059669 transparent; }
         .header-bottom::-webkit-scrollbar { height: 6px; }
         .header-bottom::-webkit-scrollbar-thumb { background-color: #059669; border-radius: 10px; }
         .header-bottom a { color: #e2e8f0; text-decoration: none; font-size: 13.5px; font-weight: 500; transition: color 0.3s; }
         .header-bottom a:hover { color: #f59e0b; }
 
-        /* Sidebar */
-        .sidebar {
-            position: fixed; top: 0; right: -320px; width: 320px; height: 100vh;
-            background: linear-gradient(180deg, #022c22 0%, #064e3b 100%);
-            box-shadow: -5px 0 25px rgba(0, 0, 0, 0.5); z-index: 1050;
-            transition: right 0.4s ease; display: flex; flex-direction: column;
-            border-left: 1px solid rgba(255, 255, 255, 0.1);
-        }
+        /* Sidebar & Menu */
+        .sidebar { position: fixed; top: 0; right: -320px; width: 320px; height: 100vh; background: linear-gradient(180deg, #022c22 0%, #064e3b 100%); box-shadow: -5px 0 25px rgba(0, 0, 0, 0.5); z-index: 1050; transition: right 0.4s ease; display: flex; flex-direction: column; border-left: 1px solid rgba(255, 255, 255, 0.1); }
         .sidebar.active { right: 0; }
         .sidebar-header { padding: 24px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
         .sidebar-header h2 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 18px; color: #f59e0b; }
@@ -77,11 +59,11 @@
         .modal-content button:hover { background: #047857; }
         .close-modal { color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer; margin-top: -20px; margin-right: -10px;}
         
-        /* Main & Admin View */
+        /* Main & Layout */
         main { padding: 150px 30px 60px 30px; max-width: 1100px; margin: 0 auto; }
         #adminDashboard { display: none; }
         
-        /* Poster Slider Publik */
+        /* Poster Slider */
         .poster-section { margin-bottom: 50px; position: relative; }
         .carousel-container { position: relative; width: 100%; height: 400px; border-radius: 16px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.15); }
         .slide { display: none; width: 100%; height: 100%; }
@@ -91,20 +73,29 @@
         .prev-btn:hover, .next-btn:hover { background: #f59e0b; }
         .prev-btn { left: 20px; } .next-btn { right: 20px; }
 
-        /* Admin Controls */
+        /* Kolom Berita Dinamis (Dari Blogger) */
+        .section-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 24px; font-weight: 800; color: #f59e0b; margin-bottom: 24px; border-bottom: 2px solid rgba(255,255,255,0.1); padding-bottom: 12px; }
+        .news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
+        .news-card { background: rgba(15, 23, 42, 0.65); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; transition: transform 0.3s ease; }
+        .news-card:hover { transform: translateY(-6px); border-color: #059669; box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
+        .news-img { width: 100%; height: 200px; object-fit: cover; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .news-content { padding: 24px; flex: 1; display: flex; flex-direction: column; }
+        .news-content h3 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 17px; color: #ffffff; margin-bottom: 12px; line-height: 1.4; }
+        .news-content p { font-size: 13.5px; color: #cbd5e1; line-height: 1.6; margin-bottom: 20px; flex: 1; }
+        .read-more { display: inline-block; font-size: 13px; font-weight: 600; color: #34d399; text-decoration: none; align-self: flex-start; }
+        .read-more:hover { color: #f59e0b; }
+
+        /* Admin Dashboard UI */
         .admin-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; border-bottom: 2px solid #059669; padding-bottom: 10px; }
         .admin-header h2 { font-family: 'Plus Jakarta Sans', sans-serif; color: #f59e0b; }
         .admin-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
-        .admin-card { background: rgba(15, 23, 42, 0.8); border: 1px dashed #f59e0b; padding: 25px; border-radius: 12px; text-align: center; transition: all 0.3s; }
-        .admin-card:hover { background: rgba(5, 150, 105, 0.2); border-color: #34d399; }
-        .admin-card h4 { margin-bottom: 15px; color: white; }
+        .admin-card { background: rgba(15, 23, 42, 0.8); border: 1px dashed #f59e0b; padding: 25px; border-radius: 12px; text-align: center; }
         .admin-card input[type="file"] { display: none; }
         .upload-btn { background: #f59e0b; color: #0f172a; padding: 8px 15px; border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: bold; display: inline-block; margin-bottom: 10px; }
 
         @media (max-width: 768px) {
             .header-top { padding: 12px 20px; } .header-bottom { padding: 10px 20px; }
-            main { padding: 140px 20px 40px 20px; }
-            .carousel-container { height: 220px; }
+            main { padding: 140px 20px 40px 20px; } .carousel-container { height: 220px; }
         }
     </style>
 </head>
@@ -116,11 +107,10 @@
             <div class="logo-container">
                 <img class="logo-img" src="logo-kemenag.png" alt="Logo Kemenag">
                 <div class="instansi-title">
-                    <h1>KUA PAKONG</h1>
+                    <h1>KUA KECAMATAN PAKONG</h1>
                     <p>Kementerian Agama RI</p>
                 </div>
             </div>
-            <!-- Tombol Garis Tiga -->
             <button class="menu-toggle" onclick="toggleMenu()" title="Buka Menu">
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
@@ -139,7 +129,7 @@
 
     <div class="overlay" id="menuOverlay" onclick="toggleMenu()"></div>
 
-    <!-- Sidebar Menu (Di sinilah letak Tombol Login Admin) -->
+    <!-- Sidebar Menu (Dengan Tombol Login Admin) -->
     <nav class="sidebar" id="sidebarMenu">
         <div class="sidebar-header">
             <h2>Menu Layanan</h2>
@@ -153,18 +143,15 @@
             <li style="margin-top: 20px;">
                 <a href="index.html" style="background: rgba(245, 158, 11, 0.1); color: #f59e0b;">Kembali ke Halaman Utama</a>
             </li>
-            
-            <!-- TOMBOL LOGIN ADMIN (Paling Bawah di Sidebar) -->
             <li style="margin-top: auto; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px;">
                 <a href="#" onclick="openLoginModal()" style="color: #ef4444; cursor: pointer;">
-                    <svg viewBox="0 0 24 24" style="fill: #ef4444; width:20px; height:20px; margin-right:10px;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>
                     Login Admin (Petugas)
                 </a>
             </li>
         </ul>
     </nav>
 
-    <!-- Modal Login Admin -->
+    <!-- Modal Login -->
     <div id="loginModal" class="modal">
         <div class="modal-content">
             <span class="close-modal" onclick="closeLoginModal()">&times;</span>
@@ -176,8 +163,10 @@
         </div>
     </div>
 
-    <!-- Tampilan Utama (Publik) -->
+    <!-- TAMPILAN UTAMA (PUBLIK) -->
     <main id="publikView">
+        
+        <!-- 1. SLIDER POSTER -->
         <section class="poster-section">
             <div class="carousel-container">
                 <div class="slide active"><img src="https://via.placeholder.com/1200x500/064e3b/ffffff?text=POSTER+KEGIATAN+KUA+PAKONG+1" alt="Poster 1"></div>
@@ -186,56 +175,35 @@
                 <button class="next-btn" onclick="pindahSlide(1)">&#10095;</button>
             </div>
         </section>
+
+        <!-- 2. KOLOM BERITA OTOMATIS (DARI BLOGGER) -->
+        <section class="berita-section" style="margin-bottom: 50px;">
+            <h2 class="section-title">Publikasi & Berita Terkini</h2>
+            <div class="news-grid" id="berita-container">
+                <p style="color: #cbd5e1; text-align: center; width: 100%;">Sedang menyinkronkan berita terbaru...</p>
+            </div>
+        </section>
         
-        <!-- Folder Embed Google Drive (Galeri Publik) -->
-        <section style="margin-top: 30px; text-align: center;">
-            <h2 style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 20px; color: #f59e0b; margin-bottom: 20px;">Galeri File KUA (Tersinkronisasi Otomatis)</h2>
+        <!-- 3. GALERI GOOGLE DRIVE -->
+        <section style="text-align: center;">
+            <h2 style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 20px; color: #f59e0b; margin-bottom: 20px;">Galeri & Dokumen Publik KUA</h2>
             <div style="width: 100%; max-width: 1000px; margin: 0 auto; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.2);">
-                <!-- Memanggil folder GDrive Anda secara Publik -->
                 <iframe src="https://drive.google.com/embeddedfolderview?id=10GC_WKuV0rOgaTyMs-lpS3ub6VbZ1hN6#grid" width="100%" height="450" frameborder="0" style="background: white;"></iframe>
             </div>
         </section>
     </main>
 
-    <!-- Tampilan Dasbor Admin (Tersembunyi Sebelum Login) -->
+    <!-- TAMPILAN ADMIN (SEMBUNYI SEBELUM LOGIN) -->
     <main id="adminDashboard">
         <div class="admin-header">
             <h2>Panel Manajemen Konten KUA</h2>
             <button onclick="logout()" style="background: #ef4444; color: white; padding: 8px 15px; border: none; border-radius: 6px; cursor: pointer;">Keluar (Logout)</button>
         </div>
-        <p style="margin-bottom: 20px; font-size: 14px; color: #cbd5e1;">Unggah file dari sini untuk menyimpannya langsung ke Google Drive.</p>
+        <p style="margin-bottom: 20px; font-size: 14px; color: #cbd5e1;">Unggah dokumen, SK, atau regulasi agar otomatis muncul di Galeri Drive Publik di bawah.</p>
         
         <div class="admin-grid">
-            <!-- Upload Poster -->
             <div class="admin-card">
-                <h4>Poster Kegiatan</h4>
-                <label class="upload-btn">
-                    + Upload File
-                    <input type="file" accept="image/*, .pdf" onchange="uploadKeDrive(this)">
-                </label>
-            </div>
-
-            <!-- Upload Berita -->
-            <div class="admin-card">
-                <h4>Berita & Artikel</h4>
-                <label class="upload-btn">
-                    + Upload File
-                    <input type="file" accept="image/*, .pdf" onchange="uploadKeDrive(this)">
-                </label>
-            </div>
-
-            <!-- Upload Produk Hukum -->
-            <div class="admin-card">
-                <h4>Produk Hukum</h4>
-                <label class="upload-btn">
-                    + Upload File
-                    <input type="file" accept="image/*, .pdf" onchange="uploadKeDrive(this)">
-                </label>
-            </div>
-
-            <!-- Personalia & Profil -->
-            <div class="admin-card">
-                <h4>Data Personalia</h4>
+                <h4>Upload Poster / Regulasi</h4>
                 <label class="upload-btn">
                     + Upload File
                     <input type="file" accept="image/*, .pdf" onchange="uploadKeDrive(this)">
@@ -245,16 +213,72 @@
     </main>
 
     <script>
-        // MASUKKAN URL DARI APPS SCRIPT ANDA DI SINI SETELAH DI-DEPLOY (Publish -> Deploy as Web App)
+        /* =========================================
+           1. PENGATURAN URL
+           ========================================= */
+        // Masukkan URL Google Apps Script Anda untuk fungsi upload ke GDrive
         const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzd_L39iO-o850kKnS11WXXbHpSuE4o9Dq-igMSTBTwhBWAJ0JQZbgk5YwXRjo9AP_Sdg/exec";
+        
+        // GANTI ALAMAT BLOGGER INI DENGAN ALAMAT BLOGGER BARU ANDA
+        const BLOGGER_URL = "https://kuapakongdigital.blogspot.com";
 
-        // Fungsi Buka Tutup Menu Garis Tiga
-        function toggleMenu() {
-            document.getElementById("sidebarMenu").classList.toggle("active");
-            document.getElementById("menuOverlay").classList.toggle("active");
+        /* =========================================
+           2. SCRIPT MENARIK BERITA DARI BLOGGER
+           ========================================= */
+        function loadBloggerNews() {
+            const feedURL = BLOGGER_URL + "/feeds/posts/default?alt=json&max-results=3";
+
+            fetch(feedURL)
+            .then(response => response.json())
+            .then(data => {
+                const entries = data.feed.entry || [];
+                let htmlOutput = "";
+
+                if(entries.length === 0) {
+                    document.getElementById("berita-container").innerHTML = "<p>Belum ada berita yang dipublikasikan.</p>";
+                    return;
+                }
+
+                entries.forEach(entry => {
+                    const title = entry.title.$t;
+                    const link = entry.link.find(l => l.rel === "alternate").href;
+                    
+                    // Ambil isi teks dan gambar
+                    let content = entry.content ? entry.content.$t : (entry.summary ? entry.summary.$t : "");
+                    
+                    // Cari gambar pertama dalam postingan
+                    let imgMatch = content.match(/<img[^>]+src="([^">]+)"/);
+                    let imgSrc = imgMatch ? imgMatch[1] : "https://via.placeholder.com/400x250/1e293b/cbd5e1?text=KUA+PAKONG";
+                    
+                    // Buat cuplikan 120 huruf tanpa kode HTML
+                    let snippet = content.replace(/(<([^>]+)>)/gi, "").substring(0, 120) + "...";
+
+                    htmlOutput += `
+                    <div class="news-card">
+                        <img class="news-img" src="${imgSrc}" alt="Foto Berita">
+                        <div class="news-content">
+                            <h3>${title}</h3>
+                            <p>${snippet}</p>
+                            <a href="${link}" target="_blank" class="read-more">Baca Selengkapnya &rarr;</a>
+                        </div>
+                    </div>
+                    `;
+                });
+                document.getElementById("berita-container").innerHTML = htmlOutput;
+            })
+            .catch(error => {
+                document.getElementById("berita-container").innerHTML = "<p style='color: #ef4444;'>Gagal memuat berita. Pastikan alamat Blogger sudah benar dan Blog tidak dikunci (Private).</p>";
+            });
         }
+        
+        // Jalankan fungsi tarik berita saat web dibuka
+        loadBloggerNews();
 
-        // Fungsi Login & Logout Admin
+
+        /* =========================================
+           3. UI & FUNGSI LAINNYA
+           ========================================= */
+        function toggleMenu() { document.getElementById("sidebarMenu").classList.toggle("active"); document.getElementById("menuOverlay").classList.toggle("active"); }
         function openLoginModal() { document.getElementById("loginModal").style.display = "block"; toggleMenu(); }
         function closeLoginModal() { document.getElementById("loginModal").style.display = "none"; document.getElementById("loginError").style.display = "none"; }
         
@@ -265,22 +289,13 @@
                 closeLoginModal();
                 document.getElementById("publikView").style.display = "none";
                 document.getElementById("adminDashboard").style.display = "block";
-                document.getElementById("username").value = "";
-                document.getElementById("password").value = "";
             } else {
                 document.getElementById("loginError").style.display = "block";
             }
         }
+        function logout() { document.getElementById("publikView").style.display = "block"; document.getElementById("adminDashboard").style.display = "none"; }
 
-        function logout() {
-            document.getElementById("publikView").style.display = "block";
-            document.getElementById("adminDashboard").style.display = "none";
-            alert("Anda telah keluar dari Panel Admin.");
-        }
-
-        // Fungsi Slider Poster
-        let currentSlide = 0;
-        const slides = document.querySelectorAll("#publikView .slide");
+        let currentSlide = 0; const slides = document.querySelectorAll("#publikView .slide");
         function tampilkanSlide(index) {
             if (index >= slides.length) currentSlide = 0;
             else if (index < 0) currentSlide = slides.length - 1;
@@ -290,43 +305,16 @@
         }
         function pindahSlide(arah) { tampilkanSlide(currentSlide + arah); }
 
-        // Fungsi Upload ke Google Drive
         function uploadKeDrive(inputElement) {
             const file = inputElement.files[0];
             if (!file) return;
-
-            if(WEB_APP_URL === "MASUKKAN_URL_WEB_APP_ANDA_DI_SINI") {
-                alert("ERROR: Anda belum memasukkan WEB_APP_URL dari Google Apps Script ke dalam kode HTML ini!");
-                inputElement.value = "";
-                return;
-            }
-
-            alert("Sedang mengunggah " + file.name + " ke Google Drive... Mohon tunggu (Jangan tutup halaman).");
-
+            alert("Sedang mengunggah " + file.name + " ke Google Drive... Mohon tunggu.");
             const reader = new FileReader();
             reader.onload = function(e) {
-                const base64Data = e.target.result.split(',')[1]; 
-                const payload = {
-                    name: file.name,
-                    type: file.type,
-                    base64: base64Data
-                };
-
-                fetch(WEB_APP_URL, {
-                    method: "POST",
-                    body: JSON.stringify(payload)
-                })
-                .then(response => response.text())
-                .then(result => {
-                    alert("SUKSES! File " + file.name + " berhasil tersimpan di Google Drive KUA.");
-                    inputElement.value = ""; 
-                })
-                .catch(error => {
-                    // CATCH biasanya muncul karena mode "no-cors" bawaan fetch saat tembak ke google script,
-                    // Tapi file tetap berhasil terkirim.
-                    alert("Proses selesai. Silakan cek folder Google Drive Anda apakah file sudah masuk.");
-                    inputElement.value = "";
-                });
+                const payload = { name: file.name, type: file.type, base64: e.target.result.split(',')[1] };
+                fetch(WEB_APP_URL, { method: "POST", body: JSON.stringify(payload) })
+                .then(r => r.text()).then(result => { alert("SUKSES! File " + file.name + " tersimpan di Google Drive KUA."); inputElement.value = ""; })
+                .catch(error => { alert("Proses selesai. Silakan cek folder Google Drive Anda."); inputElement.value = ""; });
             };
             reader.readAsDataURL(file);
         }
