@@ -59,7 +59,7 @@
         .modal-content button:hover { background: #047857; }
         .close-modal { color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer; margin-top: -20px; margin-right: -10px;}
 
-        /* Lightbox Modal (Tampilan Poster Ukuran Penuh / Layar Penuh) */
+        /* Lightbox Modal (Tampilan Poster Ukuran Penuh) */
         #lightboxModal {
             display: none; position: fixed; z-index: 3000; padding-top: 50px; left: 0; top: 0; width: 100%; height: 100%;
             background-color: rgba(0, 0, 0, 0.92); backdrop-filter: blur(8px); text-align: center;
@@ -102,10 +102,6 @@
         /* Admin Dashboard UI */
         .admin-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; border-bottom: 2px solid #059669; padding-bottom: 10px; }
         .admin-header h2 { font-family: 'Plus Jakarta Sans', sans-serif; color: #f59e0b; }
-        .admin-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
-        .admin-card { background: rgba(15, 23, 42, 0.8); border: 1px dashed #f59e0b; padding: 25px; border-radius: 12px; text-align: center; }
-        .admin-card input[type="file"] { display: none; }
-        .upload-btn { background: #f59e0b; color: #0f172a; padding: 8px 15px; border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: bold; display: inline-block; margin-bottom: 10px; }
 
         @keyframes zoomIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
         @media (max-width: 768px) { .header-top { padding: 12px 20px; } main { padding: 140px 20px 40px 20px; } }
@@ -208,14 +204,6 @@
                 <p style="color: #cbd5e1; text-align: center; width: 100%;">Sedang menyinkronkan berita terbaru...</p>
             </div>
         </section>
-        
-        <!-- 3. GALERI GOOGLE DRIVE -->
-        <section style="text-align: center;">
-            <h2 style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 20px; color: #f59e0b; margin-bottom: 20px;">Galeri & Dokumen Publik KUA</h2>
-            <div style="width: 100%; max-width: 1000px; margin: 0 auto; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.2);">
-                <iframe src="https://drive.google.com/embeddedfolderview?id=10GC_WKuV0rOgaTyMs-lpS3ub6VbZ1hN6#grid" width="100%" height="450" frameborder="0" style="background: white;"></iframe>
-            </div>
-        </section>
     </main>
 
     <!-- TAMPILAN ADMIN -->
@@ -224,21 +212,11 @@
             <h2>Panel Manajemen Konten KUA</h2>
             <button onclick="logout()" style="background: #ef4444; color: white; padding: 8px 15px; border: none; border-radius: 6px; cursor: pointer;">Keluar (Logout)</button>
         </div>
-        <div class="admin-grid">
-            <div class="admin-card">
-                <h4>Upload Dokumen / Regulasi</h4>
-                <label class="upload-btn">
-                    + Upload File
-                    <input type="file" accept="image/*, .pdf" onchange="uploadKeDrive(this)">
-                </label>
-            </div>
-        </div>
+        <p style="color: #cbd5e1;">Panel admin aktif.</p>
     </main>
 
     <script>
-        const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzd_L39iO-o850kKnS11WXXbHpSuE4o9Dq-igMSTBTwhBWAJ0JQZbgk5YwXRjo9AP_Sdg/exec";
-        
-        // ALAMAT BLOGGER ANDA (Pastikan diganti dengan link blogspot Anda yang aktif)
+        // ALAMAT BLOGGER ANDA
         const BLOGGER_URL = "https://kuapakongdigital.blogspot.com";
 
         // Tarik Berita Otomatis dari Blogger via RSS2JSON Proxy
@@ -318,20 +296,6 @@
             if(slides.length > 0) slides[currentSlide].classList.add("active");
         }
         function pindahSlide(arah) { tampilkanSlide(currentSlide + arah); }
-
-        function uploadKeDrive(inputElement) {
-            const file = inputElement.files[0];
-            if (!file) return;
-            alert("Sedang mengunggah " + file.name + " ke Google Drive...");
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const payload = { name: file.name, type: file.type, base64: e.target.result.split(',')[1] };
-                fetch(WEB_APP_URL, { method: "POST", body: JSON.stringify(payload) })
-                .then(r => r.text()).then(result => { alert("SUKSES! File tersimpan."); inputElement.value = ""; })
-                .catch(error => { alert("Proses selesai."); inputElement.value = ""; });
-            };
-            reader.readAsDataURL(file);
-        }
     </script>
 </body>
 </html>
