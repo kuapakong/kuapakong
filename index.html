@@ -75,29 +75,30 @@
             letter-spacing: 0.3px;
         }
 
-        /* Hero Section - Foto Orang Berdiri Utuh */
+        /* Hero Section - Foto Orang Berdiri Utuh Tanpa Background & Frame */
         .hero {
             flex: 1;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 60px 20px;
-            background: linear-gradient(rgba(6, 78, 59, 0.90), rgba(6, 78, 59, 0.90)), 
+            padding: 60px 20px 0 20px; /* Padding bawah 0 agar foto menyatu sejajar batas bawah */
+            background: linear-gradient(rgba(6, 78, 59, 0.92), rgba(6, 78, 59, 0.92)), 
                         url('https://via.placeholder.com/1200x600?text=Gedung+KUA+Pakong') no-repeat center center/cover;
             color: white;
         }
 
         .hero-container {
-            max-width: 1050px;
+            max-width: 1080px;
             width: 100%;
             background: rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(12px);
-            padding: 40px 48px;
-            border-radius: 16px;
+            padding: 40px 48px 0 48px;
+            border-radius: 16px 16px 0 0;
             border: 1px solid rgba(255, 255, 255, 0.18);
+            border-bottom: none;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
             display: flex;
-            align-items: flex-end; /* Membuat foto berdiri sejajar bagian bawah */
+            align-items: flex-end; /* Memastikan foto berdiri sejajar di dasar frame */
             gap: 40px;
             animation: zoomIn 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
@@ -106,7 +107,7 @@
         .hero-text {
             flex: 1;
             text-align: left;
-            padding-bottom: 10px;
+            padding-bottom: 40px;
         }
 
         .hero-text h2 {
@@ -163,17 +164,16 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
-            min-width: 250px;
+            min-width: 270px;
             opacity: 0;
             animation: fadeInUp 0.8s ease-out 0.6s forwards;
         }
 
         .photo-standing {
-            height: 260px; /* Ukuran foto lebih besar dan tinggi utuh */
+            height: 310px; /* Ukuran foto lebih besar, berdiri utuh */
             width: auto;
             object-fit: contain;
-            filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.4)); /* Bayangan badan alami */
-            margin-bottom: 12px;
+            filter: drop-shadow(0 12px 18px rgba(0, 0, 0, 0.45)); /* Bayangan badan alami */
             transition: transform 0.3s ease;
         }
 
@@ -181,18 +181,26 @@
             transform: scale(1.03);
         }
 
+        .profile-caption {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 10px 18px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(4px);
+        }
+
         .kua-profile-standing h3 {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 800;
             color: #ffffff;
             margin-bottom: 2px;
             letter-spacing: 0.3px;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         .kua-profile-standing span {
-            font-size: 12px;
+            font-size: 11px;
             color: #fbbf24;
             font-weight: 700;
             letter-spacing: 0.8px;
@@ -323,16 +331,21 @@
                 padding: 15px 20px;
             }
 
+            .hero {
+                padding-top: 30px;
+            }
+
             .hero-container {
                 flex-direction: column-reverse;
-                padding: 28px 20px;
+                padding: 28px 20px 0 20px;
                 text-align: center;
-                gap: 24px;
+                gap: 20px;
                 align-items: center;
             }
 
             .hero-text {
                 text-align: center;
+                padding-bottom: 30px;
             }
 
             .hero-text h2 {
@@ -340,7 +353,7 @@
             }
 
             .photo-standing {
-                height: 200px;
+                height: 230px;
             }
         }
 
@@ -397,11 +410,14 @@
                 <a href="dashboard.html" class="btn-utama">MASUK KE HALAMAN UTAMA</a>
             </div>
 
-            <!-- Kolom Kanan: Foto Orang Berdiri Utuh Tanpa Background & Tanpa Lingkaran -->
+            <!-- Kolom Kanan: Foto Transparan Berdiri Utuh Tanpa Background & Frame -->
             <div class="kua-profile-standing">
-                <img class="photo-standing" src="https://lh3.googleusercontent.com/d/1w6cF7ruHvT4prw26Uzkgp9_wKFgrYo34" alt="Kepala KUA Pakong - H. Mudenar, S.Th.I., M.Pd.I.">
-                <h3>H. MUDENAR, S.Th.I., M.Pd.I.</h3>
-                <span>Kepala KUA Pakong</span>
+                <!-- Direct link gambar transparan baru dari Google Drive -->
+                <img class="photo-standing" src="https://lh3.googleusercontent.com/d/1-PYilHf33tmt-7vPuugoL8A_eXTOB0Cv" alt="Kepala KUA Pakong - H. Mudenar, S.Th.I., M.Pd.I.">
+                <div class="profile-caption">
+                    <h3>H. MUDENAR, S.Th.I., M.Pd.I.</h3>
+                    <span>Kepala KUA Pakong</span>
+                </div>
             </div>
         </div>
     </section>
