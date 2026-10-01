@@ -17,7 +17,6 @@
         }
 
         body {
-            /* Font dasar menggunakan Inter */
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             background-color: #f8fafc;
             color: #1e293b;
@@ -30,7 +29,7 @@
 
         /* Header / Navigation */
         header {
-            background-color: #064e3b; /* Hijau emerald gelap khas instansi keagamaan */
+            background-color: #064e3b;
             color: #ffffff;
             padding: 18px 50px;
             display: flex;
@@ -61,7 +60,6 @@
             box-shadow: 0 2px 6px rgba(0,0,0,0.15);
         }
 
-        /* Font Judul Menggunakan Plus Jakarta Sans */
         .instansi-title h1 {
             font-family: 'Plus Jakarta Sans', sans-serif;
             font-size: 19px;
@@ -125,7 +123,6 @@
             animation: fadeInUp 0.8s ease-out 0.5s forwards;
         }
 
-        /* Button Main Page */
         .btn-utama {
             display: inline-block;
             padding: 14px 38px;
@@ -149,65 +146,124 @@
             background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%);
         }
 
-        /* Fitur Layanan Singkat */
+        /* --- FITUR LAYANAN DENGAN IKON INTERAKTIF --- */
         .fitur-ringkas {
             background: #ffffff;
-            padding: 50px 20px;
+            padding: 60px 20px;
             text-align: center;
         }
 
         .fitur-ringkas h3 {
             font-family: 'Plus Jakarta Sans', sans-serif;
             color: #064e3b;
-            font-size: 22px;
-            font-weight: 700;
+            font-size: 24px;
+            font-weight: 800;
             letter-spacing: 0.5px;
             opacity: 0;
             animation: fadeInUp 0.8s ease-out 0.9s forwards;
+        }
+
+        .sub-title {
+            font-size: 14px;
+            color: #64748b;
+            margin-top: 6px;
+            margin-bottom: 36px;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out 1s forwards;
         }
 
         .fitur-grid {
             display: flex;
             justify-content: center;
             gap: 24px;
-            max-width: 1080px;
-            margin: 28px auto 0 auto;
+            max-width: 1100px;
+            margin: 0 auto;
             flex-wrap: wrap;
         }
 
         .fitur-card {
             background: #ffffff;
             border: 1px solid #e2e8f0;
-            border-top: 4px solid #064e3b;
-            padding: 24px 20px;
-            width: 230px;
-            border-radius: 8px;
+            padding: 28px 20px;
+            width: 240px;
+            border-radius: 12px;
             opacity: 0;
             animation: fadeInUp 0.8s ease-out 1.1s forwards;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Ikon Container Bulat dengan Gradasi */
+        .icon-box {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 18px;
             transition: all 0.3s ease;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        .icon-box svg {
+            width: 26px;
+            height: 26px;
+            fill: #064e3b;
+            transition: all 0.3s ease;
         }
 
         .fitur-card strong {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 15px;
+            font-size: 16px;
             color: #0f172a;
             font-weight: 700;
-            display: block;
+            margin-bottom: 8px;
         }
 
         .fitur-card p {
-            margin-top: 8px;
             font-size: 13px;
             color: #64748b;
-            line-height: 1.5;
+            line-height: 1.6;
+            margin-bottom: 16px;
         }
 
+        .card-link {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            color: #059669;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            margin-top: auto;
+            transition: gap 0.3s ease;
+        }
+
+        /* Hover Effect untuk Kartu */
         .fitur-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 12px 20px rgba(0,0,0,0.06);
-            border-color: #cbd5e1;
-            border-top-color: #047857;
+            transform: translateY(-8px);
+            box-shadow: 0 16px 30px rgba(6, 78, 59, 0.1);
+            border-color: #a7f3d0;
+        }
+
+        .fitur-card:hover .icon-box {
+            background: linear-gradient(135deg, #064e3b 0%, #047857 100%);
+            transform: scale(1.1);
+        }
+
+        .fitur-card:hover .icon-box svg {
+            fill: #ffffff;
+        }
+
+        .fitur-card:hover .card-link {
+            gap: 8px;
+            color: #047857;
         }
 
         /* Footer */
@@ -215,43 +271,24 @@
             background-color: #0f172a;
             color: #94a3b8;
             text-align: center;
-            padding: 18px;
+            padding: 20px;
             font-size: 13px;
-            font-weight: 400;
         }
 
         /* KEYFRAMES ANIMASI */
         @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(25px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(25px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes zoomIn {
-            from {
-                opacity: 0;
-                transform: scale(0.94);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
+            from { opacity: 0; transform: scale(0.94); }
+            to { opacity: 1; transform: scale(1); }
         }
     </style>
 </head>
@@ -277,30 +314,54 @@
                 Kami berkomitmen untuk memberikan pelayanan publik yang transparan, akuntabel, dan profesional 
                 dalam melayani masyarakat di bidang keagamaan dan pencatatan pernikahan.
             </p>
-            <!-- Tombol untuk Masuk ke Halaman Utama -->
             <a href="dashboard.html" class="btn-utama">MASUK KE HALAMAN UTAMA</a>
         </div>
     </section>
 
-    <!-- Fitur Layanan Utama -->
+    <!-- Fitur Layanan Utama Interaktif -->
     <section class="fitur-ringkas">
         <h3>Layanan Utama Kami</h3>
+        <p class="sub-title">Komitmen pelayan publik terpadu untuk masyarakat Kecamatan Pakong</p>
+        
         <div class="fitur-grid">
+            <!-- Kartu 1: Nikah -->
             <div class="fitur-card">
+                <div class="icon-box">
+                    <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                </div>
                 <strong>Pendaftaran Nikah</strong>
-                <p>Pelayanan administrasi dan pencatatan pernikahan.</p>
+                <p>Pelayanan administrasi, pemeriksaan berkas, dan pencatatan pernikahan.</p>
+                <span class="card-link">Lihat Detail <span>&rarr;</span></span>
             </div>
+
+            <!-- Kartu 2: Bimbingan Perkawinan -->
             <div class="fitur-card">
+                <div class="icon-box">
+                    <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+                </div>
                 <strong>Bimbingan Perkawinan</strong>
-                <p>Pembekalan dan konseling bagi calon pengantin.</p>
+                <p>Pembekalan, konseling, dan edukasi bagi calon pengantin (Bimwin).</p>
+                <span class="card-link">Lihat Detail <span>&rarr;</span></span>
             </div>
+
+            <!-- Kartu 3: Layanan Wakaf -->
             <div class="fitur-card">
+                <div class="icon-box">
+                    <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+                </div>
                 <strong>Layanan Wakaf</strong>
-                <p>Konsultasi dan legalisasi sertifikasi tanah wakaf.</p>
+                <p>Konsultasi, ikrar, dan permohonan sertifikasi akta ikrar wakaf (AIW).</p>
+                <span class="card-link">Lihat Detail <span>&rarr;</span></span>
             </div>
+
+            <!-- Kartu 4: Konsultasi Keagamaan -->
             <div class="fitur-card">
+                <div class="icon-box">
+                    <svg viewBox="0 0 24 24"><path d="M21 6h-2v9H6v2c0 .55.45 1 1 1h11l4 4V7c0-.55-.45-1-1-1zm-4-3H3c-.55 0-1 .45-1 1v14l4-4h11c.55 0 1-.45 1-1V4c0-.55-.45-1-1-1z"/></svg>
+                </div>
                 <strong>Konsultasi Keagamaan</strong>
-                <p>Pelayanan bimbingan dan konsultasi syariah.</p>
+                <p>Bimbingan syariah, konsultasi keluarga sakinah, dan kepenghuluan.</p>
+                <span class="card-link">Lihat Detail <span>&rarr;</span></span>
             </div>
         </div>
     </section>
