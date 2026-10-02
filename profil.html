@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Instansi - KUA Kemenag Pakong</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif; color: #f1f5f9; min-height: 100vh; overflow-x: hidden;
+            background-color: #022c22;
+        }
+
+        /* Header */
+        header { background: rgba(6, 78, 59, 0.92); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); color: #ffffff; position: fixed; top: 0; width: 100%; z-index: 1000; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); display: flex; flex-direction: column; }
+        .header-top { display: flex; align-items: center; justify-content: space-between; padding: 16px 30px; }
+        .logo-container { display: flex; align-items: center; gap: 16px; }
+        .logo-img { height: 48px; width: auto; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)); }
+        .instansi-title h1 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 19px; font-weight: 800; }
+        .instansi-title p { font-size: 11px; opacity: 0.85; }
+        
+        .menu-back { background: rgba(245, 158, 11, 0.15); border: 1px solid #f59e0b; color: #f59e0b; padding: 8px 16px; border-radius: 8px; text-decoration: none; font-size: 13px; font-weight: bold; transition: all 0.3s; }
+        .menu-back:hover { background: #f59e0b; color: #0f172a; }
+
+        /* HERO SECTION DENGAN BACKGROUND GEDUNG JELAS & EFEK BERGERAK */
+        .profile-hero {
+            position: relative;
+            width: 100%;
+            min-height: 450px;
+            background: linear-gradient(rgba(2, 44, 34, 0.6), rgba(2, 44, 34, 0.85)), url('bg-gedung.jpg') no-repeat center center;
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 150px 20px 80px 20px;
+            border-bottom: 4px solid #f59e0b;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            animation: moveUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .hero-logo-large {
+            height: 80px;
+            width: auto;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 4px 10px rgba(0,0,0,0.5));
+            animation: pulseGlow 3s infinite alternate;
+        }
+
+        .hero-content h2 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 32px;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.6);
+            letter-spacing: 0.5px;
+        }
+
+        .hero-content p {
+            font-size: 16px;
+            color: #e2e8f0;
+            line-height: 1.6;
+            text-shadow: 0 1px 5px rgba(0,0,0,0.6);
+        }
+
+        /* KONTEN UTAMA PROFIL & VISI MISI */
+        .main-container {
+            max-width: 1000px;
+            margin: -50px auto 80px auto;
+            position: relative;
+            z-index: 10;
+            padding: 0 20px;
+        }
+
+        .content-card {
+            background: rgba(15, 23, 42, 0.88);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInSlide 0.8s ease forwards;
+        }
+
+        .content-card:nth-child(2) { animation-delay: 0.3s; }
+        .content-card:nth-child(3) { animation-delay: 0.5s; }
+
+        .content-card h3 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 22px;
+            color: #f59e0b;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 2px solid rgba(245, 158, 11, 0.3);
+            padding-bottom: 10px;
+        }
+
+        .content-card p, .content-card li {
+            font-size: 15px;
+            color: #cbd5e1;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .content-card ul { padding-left: 20px; }
+        .content-card li { margin-bottom: 12px; }
+
+        /* KEYFRAME ANIMASI BERGERAK */
+        @keyframes moveUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInSlide {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulseGlow {
+            from { transform: scale(1); filter: drop-shadow(0 0 5px rgba(245, 158, 11, 0.3)); }
+            to { transform: scale(1.05); filter: drop-shadow(0 0 15px rgba(245, 158, 11, 0.7)); }
+        }
+
+        footer { background-color: #0f172a; color: #94a3b8; text-align: center; padding: 25px; font-size: 13px; border-top: 1px solid rgba(255,255,255,0.08); }
+
+        @media (max-width: 768px) {
+            .hero-content h2 { font-size: 24px; }
+            .content-card { padding: 25px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Atas -->
+    <header>
+        <div class="header-top">
+            <div class="logo-container">
+                <img class="logo-img" src="logo-kemenag.png" alt="Logo Kemenag">
+                <div class="instansi-title">
+                    <h1>KUA KECAMATAN PAKONG</h1>
+                    <p>Kementerian Agama RI</p>
+                </div>
+            </div>
+            <a href="dashboard.html" class="menu-back">&larr; Kembali ke Beranda</a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION DENGAN BACKGROUND GEDUNG JELAS -->
+    <section class="profile-hero">
+        <div class="hero-content">
+            <img src="logo-kemenag.png" alt="Logo Kemenag" class="hero-logo-large">
+            <h2>KANTOR URUSAN AGAMA (KUA) KECAMATAN PAKONG</h2>
+            <p>Pusat Pelayanan Keagamaan, Pencatatan Nikah, dan Pembinaan Umat yang Profesional, Transparan, serta Berintegritas di Kabupaten Pamekasan.</p>
+        </div>
+    </section>
+
+    <!-- KONTEN PROFIL DAN VISI MISI DENGAN ELEMEN BERGERAK -->
+    <div class="main-container">
+        
+        <!-- Profil Singkat -->
+        <div class="content-card">
+            <h3>📖 Profil Instansi</h3>
+            <p>
+                Kantor Urusan Agama (KUA) Kecamatan Pakong merupakan instansi vertikal di bawah naungan Kementerian Agama Republik Indonesia yang bertugas melaksanakan pelayanan, pengawasan, pencatatan nikah dan rujuk, mengurus urusan wakaf, ibadah sosial, serta pembinaan keluarga sakinah di wilayah Kecamatan Pakong.
+            </p>
+            <p>
+                Dengan mengedepankan Zona Integritas dan pelayanan prima berbasis digital, KUA Kecamatan Pakong terus berinovasi untuk memberikan kemudahan akses informasi serta kenyamanan bagi masyarakat dalam mengurus berbagai keperluan administrasi keagamaan.
+            </p>
+        </div>
+
+        <!-- Visi (Sesuai Kemenag RI) -->
+        <div class="content-card">
+            <h3>🌟 Visi Kementerian Agama</h3>
+            <p style="font-style: italic; font-size: 17px; color: #f59e0b; background: rgba(245, 158, 11, 0.1); padding: 20px; border-radius: 8px; border-left: 4px solid #f59e0b;">
+                "Kementerian Agama yang profesional dan handal dalam membangun masyarakat yang saleh, moderat, cerdas dan unggul untuk mewujudkan Indonesia maju yang berdaulat, mandiri, dan berkepribadian berdasarkan gotong royong."
+            </p>
+        </div>
+
+        <!-- Misi (Disesuaikan untuk KUA) -->
+        <div class="content-card">
+            <h3>🎯 Misi KUA Kecamatan Pakong</h3>
+            <ul>
+                <li>Meningkatkan kualitas pelayanan kehidupan beragama di wilayah Kecamatan Pakong yang cepat, transparan, dan akuntabel.</li>
+                <li>Mewujudkan tata kelola pencatatan pernikahan dan rujuk yang tertib hukum serta berbasis elektronik.</li>
+                <li>Memperkuat moderasi beragama dan kerukunan intern serta antar umat beragama di tengah masyarakat.</li>
+                <li>Meningkatkan pembinaan keluarga sakinah, pemberdayaan zakat, wakaf, serta pengelolaan kemasjidan yang optimal.</li>
+                <li>Mengembangkan sistem pelayanan publik yang modern, ramah, dan berintegritas tinggi.</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 KUA Kecamatan Pakong. Kementerian Agama Republik Indonesia. Hak Cipta Dilindungi.</p>
+    </footer>
+
+</body>
+</html>
